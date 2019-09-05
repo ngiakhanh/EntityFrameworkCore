@@ -14,7 +14,7 @@ namespace EntityFrameworkCore.UnitTest
         public void QuerySyntax()
         {
             var query = from person in _context.Person
-                select person;
+                        select person;
 
             Trace.WriteLine("Hello");
             foreach (var item in query)
@@ -26,13 +26,19 @@ namespace EntityFrameworkCore.UnitTest
         [TestMethod]
         public void MethodSyntax()
         {
-
+            var query = _context.Person;
+            Trace.WriteLine("Hello");
+            foreach (var item in query)
+            {
+                Trace.WriteLine(item);
+            }
         }
 
         [TestMethod]
         public void RecordSyntax()
         {
-
+            var item = _context.Person.SingleOrDefault();
+            Trace.WriteLine(item);
         }
 
         [TestInitialize]
