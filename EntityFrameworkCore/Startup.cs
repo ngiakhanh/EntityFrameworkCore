@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 namespace EntityFrameworkCore
 {
     public class Startup
@@ -19,7 +19,9 @@ namespace EntityFrameworkCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(opt => {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<ContactsContext>(options =>
             {
@@ -45,11 +47,9 @@ namespace EntityFrameworkCore
             {
                 endpoints.MapControllers();
             });
-            using (var context = app.ApplicationServices.CreateScope().ServiceProvider.GetService<ContactsContext>())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-            }
+            //using var context = app.ApplicationServices.CreateScope().ServiceProvider.GetService<ContactsContext>();
+            //context.Database.EnsureDeleted();
+            //context.Database.EnsureCreated();
         }
     }
 }

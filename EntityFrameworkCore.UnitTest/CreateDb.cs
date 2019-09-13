@@ -7,14 +7,14 @@ namespace EntityFrameworkCore.UnitTest
     [TestClass]
     public class CreateDb
     {
-        private ContactsContext _context;
+        protected ContactsContext Context;
         [TestMethod]
         public void ShouldCreateDb()
         {
-            _context.Database.EnsureDeleted();
-            _context.Database.EnsureCreated();
+            Context.Database.EnsureDeleted();
+            Context.Database.EnsureCreated();
 
-            _context.Person.AddRange(new Person
+            Context.Person.AddRange(new Person
             {
                 BirthDate = DateTime.Today,
                 FirstName = "John",
@@ -27,7 +27,7 @@ namespace EntityFrameworkCore.UnitTest
                 LastName = "Doe",
                 IsActive = true
             });
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
 
         [TestInitialize]
@@ -36,16 +36,16 @@ namespace EntityFrameworkCore.UnitTest
             var builder = new DbContextOptionsBuilder<ContactsContext>();
             builder.UseSqlServer(
                 "Server=.;Database=ContactsDatabase;Trusted_Connection=True;MultipleActiveResultSets=true");
-            _context = new ContactsContext(builder.Options);
+            Context = new ContactsContext(builder.Options);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            if (_context != null)
+            if (Context != null)
             {
-                _context.Dispose();
-                _context = null;
+                Context.Dispose();
+                Context = null;
             }
         }
     }

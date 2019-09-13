@@ -1,18 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace EntityFrameworkCore
 {
     public class ContactsContext : DbContext
     {
-        public ContactsContext(DbContextOptions<ContactsContext> options) : base(options)
-        {
-
-        }
+        public readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => {
+                builder.AddConsole();
+            }
+        );
+        public ContactsContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Person> Person { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<PersonPhone> PersonPhone { get; set; }
         public DbSet<PersonType> PersonType { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<CompanyPerson> CompanyPerson { get; set; }
+        public DbSet<PersonResume> PersonResume { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLoggerFactory(LoggerFactory) //tie-up DbContext with LoggerFactory object
+                .EnableSensitiveDataLogging();
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>().ToTable("People", "Contacts").HasKey(a => a.MyId);
