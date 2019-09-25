@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +12,11 @@ namespace EntityFrameworkCore.Controllers
     public class PeopleController : ControllerBase
     {
         private readonly ContactsContext _context;
-
-        public PeopleController(ContactsContext context)
+        private readonly IMapper _mapper;
+        public PeopleController(ContactsContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/People
@@ -72,7 +74,7 @@ namespace EntityFrameworkCore.Controllers
             _context.Person.Add(person);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPersonById", new { id = person.MyId }, person);
+            return CreatedAtAction("GetPersonById", new {id = person.MyId}, person);
         }
 
         // DELETE: api/People/5

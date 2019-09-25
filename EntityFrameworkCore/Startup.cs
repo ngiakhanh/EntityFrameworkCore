@@ -1,10 +1,11 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+
 namespace EntityFrameworkCore
 {
     public class Startup
@@ -27,6 +28,7 @@ namespace EntityFrameworkCore
             {
                 options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
             });
+            services.AddAutoMapper(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

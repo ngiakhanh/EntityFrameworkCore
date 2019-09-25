@@ -23,16 +23,8 @@ namespace EntityFrameworkCore.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Person>> Get()
+        public IEnumerable<Person> Get()
         {
-            var newPerson = new Person()
-            {
-                FirstName = "Sergey",
-                LastName = "Barksley"
-            };
-            _context.Person.Add(newPerson);
-
-            await _context.SaveChangesAsync();
             return _context.Person.ToList();
         }
     }

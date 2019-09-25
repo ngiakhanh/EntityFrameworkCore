@@ -7,7 +7,7 @@ namespace EntityFrameworkCore
     public class Person
     {
         public int MyId { get; set; }
-        [MaxLength(3)]
+        [MaxLength(3, ErrorMessage = "Max 3")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
