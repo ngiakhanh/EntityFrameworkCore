@@ -142,3 +142,7 @@ C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\bin\Debug\netcore
 C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
 C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\bin\Debug\netcoreapp3.0\AutoMapper.dll
+C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\bin\Debug\netcoreapp3.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\obj\Debug\netcoreapp3.0\EntityFrameworkCore.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\obj\Debug\netcoreapp3.0\EntityFrameworkCore.csproj.CoreCompileInputs.cache
+C:\Users\GNG04\Desktop\EntityFrameworkCore\EntityFrameworkCore\obj\Debug\netcoreapp3.0\EntityFrameworkCore.genruntimeconfig.cache

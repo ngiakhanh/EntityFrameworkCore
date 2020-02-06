@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -19,14 +20,24 @@ namespace EntityFrameworkCore.UnitTest
                 BirthDate = DateTime.Today,
                 FirstName = "John",
                 LastName = "Doe",
-                IsActive = true
+                IsActive = true,
+                Phones = new List<PersonPhone>{new PersonPhone
+                {
+                PhoneNumber = "1234"
+                }},
+
             }, new Person
             {
                 BirthDate = DateTime.Today.AddYears(-1),
                 FirstName = "Jane",
                 LastName = "Doe",
-                IsActive = true
+                IsActive = true,
+                Phones = new List<PersonPhone>{new PersonPhone
+                {
+                    PhoneNumber = "123"
+                }}
             });
+
             Context.SaveChanges();
         }
 

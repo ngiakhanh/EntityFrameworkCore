@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace EntityFrameworkCore
@@ -52,6 +48,13 @@ namespace EntityFrameworkCore
                         .HasForeignKey(a=>a.PersonId)
                         //.HasConstraintName("FK_People_PersonId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PersonType>()
+                .HasMany(g => g.People)
+                .WithOne(s => s.PersonType)
+                .HasForeignKey(a=>a.PersonTypeId)
+                //.HasConstraintName("FK_People_PersonId")
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Many to many
             modelBuilder.Entity<CompanyPerson>().HasKey(sc => new { sc.CompanyId, sc.PersonId });

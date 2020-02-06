@@ -3,7 +3,7 @@
 namespace EntityFrameworkCore.UnitTest
 {
     [TestClass]
-    class Performance : CreateDb
+    public class Performance : CreateDb
     {
         [TestMethod]
         public void AsNoTrackingSyntax()

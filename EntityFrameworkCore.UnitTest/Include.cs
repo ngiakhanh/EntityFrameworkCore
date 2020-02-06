@@ -9,7 +9,6 @@ namespace EntityFrameworkCore.UnitTest
     [TestClass]
     public class Include : CreateDb
     {
-
         [TestMethod]
         public void ChildDataInclude()
         {
@@ -26,7 +25,9 @@ namespace EntityFrameworkCore.UnitTest
         [TestMethod]
         public void GroupSyntax()
         {
-            var group = Context.Person.GroupBy(a=>a.MyId, a=> a.Phones, (key, g)=> new {key, phonesCount=g.Count()});
+            //var group=Context.Person.AsEnumerable().GroupBy(p => p.IsActive);
+            var group = Context.Person.AsEnumerable().GroupBy(a=>a.MyId, a=> a.Phones, (key, g)=> new {key, phonesCount=g.Count()});
+            var o = Context.Person.AsEnumerable();
 
             foreach (var person in group)
             {
